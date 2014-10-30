@@ -1,0 +1,18 @@
+  <% include ../partials/header.ejs %>
+  
+  <div class = "container">
+  <h3>All your lists!</h3>
+  <br>
+      <% lists.forEach(function (list) { %>
+      <div>
+        <h4><a href="list/<%= list.id %>/items"><%= list.name %></h4>
+		    <h5><a href="list/<%= list.id %>/items">See items</a></h5>
+      </div>
+      <% }) %>
+      <br>
+
+    <a href="lists/new" class="btn btn-large btn-info" role="button">+</a>
+    </div>
+
+  	
+  <% include ../partials/footer.ejs %>

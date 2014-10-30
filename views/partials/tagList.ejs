@@ -1,0 +1,7 @@
+<% if (post.Tags && post.Tags.length > 0) { %>
+<p>tags:
+  <% post.Tags.forEach(function (tag) { %>
+  <a href="/tags/<%=tag.name%>"><%= tag.name %></a>
+  <% }) %>
+<p>
+<% } %>

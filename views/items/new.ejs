@@ -1,0 +1,23 @@
+<% include ../partials/header %>
+  <div class = "container">
+    <h3>Add Item</h3>
+    <!--<div class = "container">-->
+
+    <!-- TODO Add the list id! -->
+    <form action="/additems" method="POST">
+      <!--<input type="text" name="user[name]" placeholder="Name"><br>
+      <br>-->
+      <input type="hidden" name="ListId" value = <%= list.id  %>>
+      <input type="text" name="name" autofocus placeholder="Item"><br>
+      <br>
+       <input type="text" name="brand" placeholder="Brand"><br>
+      <br>
+      <input type="text" name="price" placeholder="Price"><br>
+      <br>
+      <button type="submit" class="btn btn-default">Submit and Add Another!</button>
+    </form>
+    <br>
+    <a href="/lists">All done? See your lists here</a>
+    </div>
+    </div>
+<% include ../partials/footer %>

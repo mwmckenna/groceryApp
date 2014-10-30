@@ -1,0 +1,8 @@
+<% include ../partials/header %>
+    <h1><%= tag.name %></h1>
+    <ul>
+    <% lists.forEach(function (list) { %>
+    <li><a href="/lists/<%=list.id%>"><%= list.name %></a>, by <%= post.User.name %></li>
+    <% }) %>
+    </ul>
+ <% include ../partials/footer %>

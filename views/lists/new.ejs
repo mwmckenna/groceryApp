@@ -1,0 +1,15 @@
+<% include ../partials/header %>
+  <div class = "container">
+    <h3>Make a new list!</h3>
+    <form action="/createlist" method="POST">
+      <p>
+        <label for="name">Name: </label>
+        <input type="text" id="name" name="name" placeholder="Give your list a name....">
+      </p>
+      <p>
+      <input type="hidden" name="UserId" value = "<%= user.id %>">
+      <button type="submit" class="btn btn-info">Create</button>
+      </p>
+    </form>
+  </div>
+<% include ../partials/footer %>
