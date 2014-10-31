@@ -60,10 +60,6 @@ app.get('/login', routeMiddleware.preventLoginSignup, function(req,res){
     res.render('users/login', {message: req.flash('loginMessage'), username: ""});
 });
 
-// app.get('lists/index', routeMiddleware.checkAuthentication, function(req,res){
-//   res.render("lists/index", {user: req.user});
-// });
-
 // on submit, create a new users using form values and log them in if all goes well
 app.post('/signup', function(req,res){
 
@@ -92,16 +88,12 @@ app.get('/logout', function(req,res){
   res.redirect('/');
 });
 
-
-
-// app.get("/", function (req, res) {
-//   res.render("lists/new.ejs");
-// });
-
+//start with new list when user is logged in or goes to home
 app.get("/lists/new", function (req, res) {
   res.render("lists/new", {user: req.user});
 });
 
+//get list info according to user
 app.get("/lists", function (req, res) {
   db.User.find(req.user.id).done(function(err,user){
     user.getLists().done(function(err,lists){
@@ -110,6 +102,7 @@ app.get("/lists", function (req, res) {
   })
 });
 
+//get list id
 app.get("/list/:id/items", function (req, res) {
   db.List.find({
     where: {
@@ -123,21 +116,12 @@ app.get("/list/:id/items", function (req, res) {
   });
 });
 
+//create items and redirect back to new items page to add more
 app.post("/lists", function (req, res) {
   var userParams = req.body.user;
   var listParams = req.body.list;
   var itemParams = req.body.item;
   var tagParams = req.body.tags;
-
-  // console.log(req.body.item);
-  // var item = {};
-  // var count = 0;
-  // item.id = count;
-  // //item.name = req.body.item.name;
-  // //item.brand = req.body.item.brand;
-  // items.push(itemParams);
-  // count++;
-  // res.redirect('/lists/index');
   
   var itemArr = [];
   var createItems = function (list) {
@@ -160,6 +144,7 @@ app.post("/lists", function (req, res) {
     }
   };
 
+//when tags come into play...
   var tagArr = tagParams.split(",");
 
   var createTags = function (item) {
@@ -177,6 +162,7 @@ app.post("/lists", function (req, res) {
     }
   };
 
+//create the list with its items
   var createList = function(err, user, created) {
     db.List.create(listParams).done(function(err, list) {
       user.addlist(list).then(function () {
@@ -184,7 +170,7 @@ app.post("/lists", function (req, res) {
       });
     });
   };
-
+//find users lists
   db.User.findOrCreate({
     where: userParams,
     defaults: userParams
@@ -214,6 +200,7 @@ app.post('/addItems', function(req,res){
   })
 })
 
+//use the users id to get their lists
 app.get("/users/:id", function (req, res) {
   var id = req.params.id;
   db.User.find(id).then(function (err, user) {
@@ -226,6 +213,7 @@ app.get("/users/:id", function (req, res) {
   });
 });
 
+//when tags come into play...
 app.get("/tags/:name", function (req, res) {
   var tagName = req.params.name;
   db.Tag.find({where: {name: tagName}}).then(function (err, tag) {
@@ -234,6 +222,7 @@ app.get("/tags/:name", function (req, res) {
     });
   });
 });
+
 
 // var delItems = function () {
 //   $('#ok').click(function() {
@@ -244,33 +233,16 @@ app.get("/tags/:name", function (req, res) {
 // delItems();
 
 
-// var initialize = function() {
-
-//   var delItems = function () {
-//     $('#ok')
-//       .on('click', function() {
-//         $('.listItem #ok').remove();
-//       })
-//     });
-
-//   delItems();
-
-//   // $("#reset").bind("click", function() {
-//   //   $("li").removeClass("selected");
-//   //   $("img").attr("src","./images/panic.jpeg");
-//   // });
-
-//   console.log("delItems done");
-// };
-
-// // window.onload=initialize;
-// $(window).load(initialize);
-
-
 // catch-all for 404 errors
 app.get('*', function(req,res){
   res.status(404);
   res.render('users/404');
 });
 
-app.listen(3000);
+app.listen(3000, function(){
+  console.log("Starting up");
+});
+
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Starting Up");
+});
