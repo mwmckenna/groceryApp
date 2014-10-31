@@ -12,11 +12,9 @@
      <br>
      	Price: <%= item.price %>
       <br>
-      <button type="button" id="ok" class="btn btn-success btn-xs">
-      <span class="glyphicon glyphicon-ok"></span>
+      <button type="button" id="ok" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span>
       </button>
-      <button type="button" id="remove" class="btn btn-danger btn-xs">
-      <span class="glyphicon glyphicon-remove"></span>
+      <button type="button" id="remove" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>
       </button> 
     </p>
 
@@ -41,6 +39,8 @@
      <% }) %>
 
     <br>
+    <a href="/createlist" class="btn btn-info" role="button">+ item</a>
+<!--Google Custom Search-->
 <div id='cse' class = "container" style='width: 60%;'>Loading</div>
 <script src='//www.google.com/jsapi' type='text/javascript'></script>
   <script type='text/javascript'>
@@ -60,7 +60,7 @@
         }, true);
 </script>
 </div>
-     <a href="/createlist" class="btn btn-info" role="button">+ item</a>
+
 </div>
 
 <% include ../partials/footer %>
