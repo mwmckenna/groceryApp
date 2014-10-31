@@ -162,24 +162,6 @@ app.post("/lists", function (req, res) {
 
   var tagArr = tagParams.split(",");
 
-
-// User.findOrCreate({
-//   where: {
-//     username: "johny",
-//     password: "pass",
-//     email: "johny93[###]example.com"
-//   },
-//   defaults: {
-//     //properties to be created 
-//   }
-// }).then(function(user){
-//   var created = user[1];
-//   user = user[0];
-//   console.log(user.values);
-// }).fail(function(err){
-//   console.log('Error occured', err);
-// });
-
   var createTags = function (item) {
     if (tagArr.length === 0) {
       res.redirect("/lists/new");
@@ -252,6 +234,37 @@ app.get("/tags/:name", function (req, res) {
     });
   });
 });
+
+// var delItems = function () {
+//   $('#ok').click(function() {
+//     $(".listItem").remove();
+//   });
+// };
+
+// delItems();
+
+
+// var initialize = function() {
+
+//   var delItems = function () {
+//     $('#ok')
+//       .on('click', function() {
+//         $('.listItem #ok').remove();
+//       })
+//     });
+
+//   delItems();
+
+//   // $("#reset").bind("click", function() {
+//   //   $("li").removeClass("selected");
+//   //   $("img").attr("src","./images/panic.jpeg");
+//   // });
+
+//   console.log("delItems done");
+// };
+
+// // window.onload=initialize;
+// $(window).load(initialize);
 
 
 // catch-all for 404 errors

@@ -5,25 +5,44 @@
   <h3><%= list.name %></h3>
      
   <% items.forEach(function(item){ %>	
-    <p>
-     	Name: <%= item.name %> 
+    <p class="listItem">
+      Name: <%= item.name %> 
      <br>
      	Brand: <%= item.brand %>
      <br>
      	Price: <%= item.price %>
       <br>
-      <button type="button" class="btn btn-success btn-xs">
+      <button type="button" id="ok" class="btn btn-success btn-xs">
       <span class="glyphicon glyphicon-ok"></span>
       </button>
-      <button type="button" class="btn btn-danger btn-xs">
+      <button type="button" id="remove" class="btn btn-danger btn-xs">
       <span class="glyphicon glyphicon-remove"></span>
-      </button>
+      </button> 
     </p>
+
+    <script>
+      var completeItems = function () {
+        $('#ok').click(function() {
+          $(".listItem").remove();
+      });
+      };
+
+      completeItems();
+
+      var delItems = function () {
+        $('#remove').click(function() {
+          $(".listItem").remove();
+      });
+      };
+
+      delItems();
+    </script>
+    
      <% }) %>
 
     <br>
 
-     <a href="list/:id/items/new" class="btn btn-info" role="button">+ item</a>
+     <a href="/createlist" class="btn btn-info" role="button">+ item</a>
 </div>
 
 <% include ../partials/footer %>
