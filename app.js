@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 
 app.use(session( {
-  
+  secret: '9870897432456587',
   name: 'grocery key',
   // this is in milliseconds
   maxage: 3600000
