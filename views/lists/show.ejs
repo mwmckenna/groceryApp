@@ -41,7 +41,25 @@
      <% }) %>
 
     <br>
-
+<div id='cse' class = "container" style='width: 60%;'>Loading</div>
+<script src='//www.google.com/jsapi' type='text/javascript'></script>
+  <script type='text/javascript'>
+    google.load('search', '1', {language: 'en', style: google.loader.themes.V2_DEFAULT});
+    google.setOnLoadCallback(function() {
+      var customSearchOptions = {};
+      var orderByOptions = {};
+      orderByOptions['keys'] = [{label: 'Relevance', key: ''} , {label: 'Date', key: 'date'}];
+      customSearchOptions['enableOrderBy'] = true;
+      customSearchOptions['orderByOptions'] = orderByOptions;
+      customSearchOptions['overlayResults'] = true;
+      var customSearchControl =   new google.search.CustomSearchControl('013636092485042898442:x5hwwie_ymc', customSearchOptions);
+        customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+      var options = new google.search.DrawOptions();
+      options.setAutoComplete(true);
+        customSearchControl.draw('cse', options);
+        }, true);
+</script>
+</div>
      <a href="/createlist" class="btn btn-info" role="button">+ item</a>
 </div>
 
